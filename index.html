@@ -26,8 +26,10 @@
   --font-mono: 'DM Mono', monospace;
   --font-body: 'DM Sans', sans-serif;
 }
+ 
+html { scroll-behavior: smooth; }
 
-<!-- TROL — Screentrol.app Chat Widget v1 -->
+  <!-- TROL — Screentrol.app Chat Widget v1 -->
 <!-- Paste this snippet just before </body> on screentrol.app -->
 <!-- Replace WORKER_URL_PLACEHOLDER with your Cloudflare Worker URL after deployment -->
 
@@ -709,9 +711,7 @@ WHAT NOT TO DISCUSS:
 
 })();
 </script>
-
   
-html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
 body::before {
