@@ -27,6 +27,690 @@
   --font-body: 'DM Sans', sans-serif;
 }
 
+<!-- TROL — Screentrol.app Chat Widget v1 -->
+<!-- Paste this snippet just before </body> on screentrol.app -->
+<!-- Replace WORKER_URL_PLACEHOLDER with your Cloudflare Worker URL after deployment -->
+
+<style>
+/* ── Screentrol Chat Widget ── */
+#trol-wrapper * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; }
+
+#trol-wrapper {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* ── Bubble button ── */
+#trol-bubble {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1a1a2e;
+  border: 1.5px solid rgba(99,179,237,0.35);
+  box-shadow: 0 4px 24px rgba(99,179,237,0.18), 0 2px 8px rgba(0,0,0,0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+#trol-bubble::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(99,179,237,0.15), transparent 70%);
+}
+#trol-bubble:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 32px rgba(99,179,237,0.28), 0 2px 8px rgba(0,0,0,0.5);
+}
+#trol-bubble svg { position: relative; z-index: 1; transition: opacity 0.2s, transform 0.2s; }
+#trol-bubble .trol-icon-chat { opacity: 1; transform: scale(1); }
+#trol-bubble .trol-icon-close { position: absolute; opacity: 0; transform: scale(0.6) rotate(-90deg); }
+#trol-wrapper.open #trol-bubble .trol-icon-chat { opacity: 0; transform: scale(0.6) rotate(90deg); }
+#trol-wrapper.open #trol-bubble .trol-icon-close { opacity: 1; transform: scale(1) rotate(0deg); }
+
+/* ── Chat window ── */
+#trol-window {
+  width: 360px;
+  height: 520px;
+  background: #0f0f1a;
+  border: 1px solid rgba(99,179,237,0.2);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+#trol-wrapper.open #trol-window {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* ── Header ── */
+#trol-header {
+  padding: 14px 16px 13px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-bottom: 1px solid rgba(99,179,237,0.12);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+.trol-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1e3a5f, #2d6a9f);
+  border: 1px solid rgba(99,179,237,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.trol-header-text h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e8f4fd;
+  letter-spacing: 0.01em;
+}
+.trol-header-text p {
+  font-size: 11.5px;
+  color: rgba(148,204,240,0.65);
+  margin-top: 1px;
+}
+.trol-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: rgba(148,204,240,0.5);
+  margin-top: 2px;
+}
+.trol-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #48bb78;
+  box-shadow: 0 0 6px rgba(72,187,120,0.6);
+  animation: trol-pulse 2.5s ease-in-out infinite;
+}
+@keyframes trol-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ── Messages ── */
+#trol-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+#trol-messages::-webkit-scrollbar { width: 4px; }
+#trol-messages::-webkit-scrollbar-track { background: transparent; }
+#trol-messages::-webkit-scrollbar-thumb { background: rgba(99,179,237,0.2); border-radius: 2px; }
+
+.trol-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 88%;
+  animation: trol-fadeup 0.2s ease;
+}
+@keyframes trol-fadeup {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.trol-msg.bot { align-self: flex-start; }
+.trol-msg.user { align-self: flex-end; }
+
+.trol-bubble-text {
+  padding: 9px 13px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.trol-msg.bot .trol-bubble-text {
+  background: #1a1a2e;
+  border: 1px solid rgba(99,179,237,0.15);
+  color: #cce7f8;
+  border-bottom-left-radius: 4px;
+}
+.trol-msg.user .trol-bubble-text {
+  background: linear-gradient(135deg, #1e3a5f, #2563a8);
+  color: #e8f4fd;
+  border-bottom-right-radius: 4px;
+}
+
+/* typing indicator */
+.trol-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 13px;
+  background: #1a1a2e;
+  border: 1px solid rgba(99,179,237,0.15);
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+  width: fit-content;
+}
+.trol-typing span {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(99,179,237,0.5);
+  animation: trol-bounce 1.2s ease-in-out infinite;
+}
+.trol-typing span:nth-child(2) { animation-delay: 0.2s; }
+.trol-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes trol-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* ── Lead banner ── */
+#trol-lead-banner {
+  display: none;
+  margin: 0 14px 10px;
+  padding: 9px 13px;
+  background: rgba(72,187,120,0.1);
+  border: 1px solid rgba(72,187,120,0.25);
+  border-radius: 10px;
+  font-size: 12.5px;
+  color: #9ae6b4;
+  text-align: center;
+  flex-shrink: 0;
+}
+#trol-lead-banner.visible { display: block; }
+
+/* ── Lead form (inline in chat) ── */
+.trol-lead-form {
+  background: #1a1a2e;
+  border: 1px solid rgba(99,179,237,0.2);
+  border-radius: 14px;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 95%;
+  align-self: flex-start;
+  animation: trol-fadeup 0.2s ease;
+}
+.trol-lead-form p {
+  font-size: 13px;
+  color: rgba(148,204,240,0.8);
+  line-height: 1.4;
+}
+.trol-lead-form input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(99,179,237,0.2);
+  border-radius: 8px;
+  padding: 8px 11px;
+  font-size: 13px;
+  color: #e8f4fd;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+.trol-lead-form input::placeholder { color: rgba(148,204,240,0.35); }
+.trol-lead-form input:focus { border-color: rgba(99,179,237,0.5); }
+.trol-lead-submit {
+  background: linear-gradient(135deg, #1e3a5f, #2563a8);
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  color: #e8f4fd;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.trol-lead-submit:hover { opacity: 0.85; }
+
+/* ── Input area ── */
+#trol-input-area {
+  padding: 10px 12px 12px;
+  border-top: 1px solid rgba(99,179,237,0.1);
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+  background: #0f0f1a;
+}
+#trol-input {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(99,179,237,0.18);
+  border-radius: 12px;
+  padding: 9px 13px;
+  font-size: 13.5px;
+  color: #e8f4fd;
+  resize: none;
+  outline: none;
+  line-height: 1.5;
+  max-height: 100px;
+  overflow-y: auto;
+  transition: border-color 0.15s;
+}
+#trol-input::placeholder { color: rgba(148,204,240,0.3); }
+#trol-input:focus { border-color: rgba(99,179,237,0.4); }
+
+#trol-send {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1e3a5f, #2563a8);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: opacity 0.15s, transform 0.1s;
+}
+#trol-send:hover { opacity: 0.85; transform: scale(1.05); }
+#trol-send:active { transform: scale(0.95); }
+#trol-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+#trol-footer {
+  text-align: center;
+  font-size: 10.5px;
+  color: rgba(99,179,237,0.25);
+  padding: 0 12px 9px;
+  flex-shrink: 0;
+  background: #0f0f1a;
+}
+
+/* ── Suggested questions ── */
+.trol-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+  max-width: 95%;
+  align-self: flex-start;
+}
+.trol-suggestion-btn {
+  background: rgba(99,179,237,0.08);
+  border: 1px solid rgba(99,179,237,0.2);
+  border-radius: 20px;
+  padding: 5px 11px;
+  font-size: 12px;
+  color: rgba(148,204,240,0.8);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.trol-suggestion-btn:hover {
+  background: rgba(99,179,237,0.15);
+  border-color: rgba(99,179,237,0.4);
+}
+
+/* ── Mobile ── */
+@media (max-width: 420px) {
+  #trol-window { width: calc(100vw - 24px); height: 480px; }
+  #trol-wrapper { bottom: 16px; right: 12px; }
+}
+</style>
+
+<div id="trol-wrapper">
+  <!-- Bubble -->
+  <button id="trol-bubble" aria-label="Chat with Trol" onclick="trolToggle()">
+    <svg class="trol-icon-chat" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(99,179,237,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <svg class="trol-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(99,179,237,0.9)" stroke-width="2.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <!-- Window -->
+  <div id="trol-window" role="dialog" aria-label="Chat with Trol">
+
+    <!-- Header -->
+    <div id="trol-header">
+      <div class="trol-avatar">📱</div>
+      <div class="trol-header-text">
+        <h3>Trol</h3>
+        <p>Screentrol Assistant</p>
+        <div class="trol-status">
+          <span class="trol-status-dot"></span>
+          Ready to help
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div id="trol-messages"></div>
+
+    <!-- Lead success banner -->
+    <div id="trol-lead-banner">
+      ✅ Got it! We'll be in touch at your email shortly.
+    </div>
+
+    <!-- Input -->
+    <div id="trol-input-area">
+      <textarea id="trol-input" placeholder="Ask about Screentrol..." rows="1"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();trolSend()}"
+        oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+      <button id="trol-send" aria-label="Send" onclick="trolSend()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+    <div id="trol-footer">Powered by Screentrol · AI Assistant</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // ── Config ──
+  const WORKER_URL = 'WORKER_URL_PLACEHOLDER'; // Replace after Cloudflare Worker deploy
+  const BOT_NAME   = 'Trol';
+  const SITE_NAME  = 'Screentrol';
+
+  // ── System prompt ──
+  const SYSTEM_PROMPT = `You are Trol, a friendly and helpful AI assistant for Screentrol (screentrol.app).
+
+ABOUT SCREENTROL:
+Screentrol is a Windows app that lets you mirror and control your Android phone on your PC — wirelessly or via USB. No lag, no subscriptions, no nonsense. Built on scrcpy (the fastest open source Android mirror engine) with a clean setup wizard on top. One-time purchase of $4.99. No account required after activation.
+
+KEY FEATURES:
+- USB and wireless mirroring over local WiFi
+- Audio forwarding (requires Android 11+)
+- Ultra-low latency — runs at native speed, no cloud middleman
+- Setup wizard with brand-specific steps for Samsung, Pixel, OnePlus, Xiaomi, Motorola, and more
+- Battery saver — turns off phone screen while mirroring
+- System tray — runs quietly in the background
+
+REQUIREMENTS:
+- Windows 10 or 11 (64-bit)
+- Android 8.0 or higher
+- Audio forwarding needs Android 11+
+- Any USB-A or USB-C cable for USB connection
+- Same local WiFi network for wireless
+- No root required
+
+PRICING:
+- $4.99 — one-time, lifetime license
+- No subscription ever
+- No account required after purchase
+- Includes all future v1.x updates
+- Sold via Gumroad — secure checkout, instant delivery
+
+COMMON QUESTIONS:
+Q: Is it safe? What does it do to my phone?
+A: Screentrol uses Android's official ADB (Android Debug Bridge) — the same tool Android Studio uses. It does not modify your phone, collect any data, or require root access. The mirroring engine is scrcpy, a fully open source project.
+
+Q: Why does scrcpy need a paid wrapper?
+A: scrcpy is a powerful command-line tool but requires terminal knowledge. Screentrol bundles everything, walks you through developer options for your specific phone brand, manages connections, and gives you a clean UI. You pay for the setup experience, not the underlying engine.
+
+Q: Does it work on Mac or Linux?
+A: Screentrol v1.0.0 is Windows-only. Mac and Linux support are on the roadmap. scrcpy runs natively on those platforms if you're comfortable with the terminal in the meantime.
+
+Q: Will it work with my Samsung / Pixel / Xiaomi?
+A: Yes. The wizard has brand-specific instructions for Samsung, Pixel, OnePlus, Xiaomi, Motorola, and a generic guide for everything else. Samsung users also get a reminder to disable Auto Blocker, which is a common stumbling block.
+
+Q: Is there a subscription?
+A: No. $4.99 once, yours forever. No recurring charges, no pro tier, no account needed after activation.
+
+Q: What if it doesn't work?
+A: Reach out via Gumroad and we'll help troubleshoot. If we genuinely can't get it working on your setup, you get a full refund — no questions asked.
+
+WHERE TO BUY:
+https://optisupply.gumroad.com/l/screentrol
+
+SUPPORT:
+Email: hello@screentrol.app
+
+YOUR PERSONALITY:
+- Friendly, helpful, and straight to the point
+- Use casual but clear language — like a knowledgeable friend helping someone out
+- Keep answers concise (2–4 sentences) unless more detail is clearly needed
+- Use light tech language — this audience is comfortable with Android and Windows
+- Never make up features or specs — if unsure, direct to hello@screentrol.app
+
+WHAT NOT TO DISCUSS:
+- Competitor products
+- Anything unrelated to Screentrol or Android/Windows tech
+- If asked something outside your knowledge, say: "That's a good one — best to reach out to us at hello@screentrol.app and we'll get you sorted!"`;
+
+  // ── State ──
+  let messages        = [];
+  let leadCaptured    = false;
+  let leadStep        = null; // null | 'name' | 'email'
+  let pendingLeadName = '';
+  let isOpen          = false;
+  let isTyping        = false;
+
+  // ── Suggestions shown on open ──
+  const SUGGESTIONS = [
+    'Does it work wirelessly?',
+    'Is it safe for my phone?',
+    'Does it work on Mac?',
+    'How much does it cost?'
+  ];
+
+  // ── DOM refs ──
+  const wrapper  = document.getElementById('trol-wrapper');
+  const msgArea  = document.getElementById('trol-messages');
+  const input    = document.getElementById('trol-input');
+  const sendBtn  = document.getElementById('trol-send');
+  const banner   = document.getElementById('trol-lead-banner');
+
+  // ── Toggle ──
+  window.trolToggle = function() {
+    isOpen = !isOpen;
+    wrapper.classList.toggle('open', isOpen);
+    if (isOpen && messages.length === 0) trolGreet();
+    if (isOpen) setTimeout(() => input.focus(), 280);
+  };
+
+  // ── Greeting ──
+  function trolGreet() {
+    addBotMsg("Hey there! 👋 I'm Trol, your Screentrol assistant. Ask me anything — setup, features, compatibility, you name it.");
+    setTimeout(() => addSuggestions(), 300);
+  }
+
+  // ── Add suggestions ──
+  function addSuggestions() {
+    const div = document.createElement('div');
+    div.className = 'trol-suggestions';
+    SUGGESTIONS.forEach(s => {
+      const btn = document.createElement('button');
+      btn.className = 'trol-suggestion-btn';
+      btn.textContent = s;
+      btn.onclick = () => { div.remove(); handleUserMsg(s); };
+      div.appendChild(btn);
+    });
+    msgArea.appendChild(div);
+    scrollBottom();
+  }
+
+  // ── Add bot message ──
+  function addBotMsg(text) {
+    const div = document.createElement('div');
+    div.className = 'trol-msg bot';
+    const bubble = document.createElement('div');
+    bubble.className = 'trol-bubble-text';
+    bubble.textContent = text;
+    div.appendChild(bubble);
+    msgArea.appendChild(div);
+    scrollBottom();
+    return div;
+  }
+
+  // ── Add user message ──
+  function addUserMsg(text) {
+    const div = document.createElement('div');
+    div.className = 'trol-msg user';
+    const bubble = document.createElement('div');
+    bubble.className = 'trol-bubble-text';
+    bubble.textContent = text;
+    div.appendChild(bubble);
+    msgArea.appendChild(div);
+    scrollBottom();
+  }
+
+  // ── Show typing ──
+  function showTyping() {
+    const div = document.createElement('div');
+    div.className = 'trol-msg bot';
+    div.id = 'trol-typing-indicator';
+    div.innerHTML = '<div class="trol-typing"><span></span><span></span><span></span></div>';
+    msgArea.appendChild(div);
+    scrollBottom();
+  }
+  function hideTyping() {
+    const el = document.getElementById('trol-typing-indicator');
+    if (el) el.remove();
+  }
+
+  // ── Scroll ──
+  function scrollBottom() {
+    setTimeout(() => { msgArea.scrollTop = msgArea.scrollHeight; }, 30);
+  }
+
+  // ── Lead capture flow ──
+  function startLeadCapture() {
+    leadStep = 'name';
+    const form = document.createElement('div');
+    form.className = 'trol-lead-form';
+    form.id = 'trol-lead-form';
+    form.innerHTML = `
+      <p>Happy to help! Could I grab your name and email so our team can follow up with you?</p>
+      <input type="text" id="trol-lead-name" placeholder="Your name" autocomplete="name" />
+      <input type="email" id="trol-lead-email" placeholder="Your email" autocomplete="email" style="display:none"/>
+      <button class="trol-lead-submit" id="trol-lead-next">Next →</button>
+    `;
+    msgArea.appendChild(form);
+    scrollBottom();
+    setTimeout(() => document.getElementById('trol-lead-name').focus(), 100);
+
+    document.getElementById('trol-lead-next').onclick = function() {
+      if (leadStep === 'name') {
+        const name = document.getElementById('trol-lead-name').value.trim();
+        if (!name) return;
+        pendingLeadName = name;
+        leadStep = 'email';
+        document.getElementById('trol-lead-name').disabled = true;
+        document.getElementById('trol-lead-email').style.display = 'block';
+        this.textContent = 'Submit';
+        setTimeout(() => document.getElementById('trol-lead-email').focus(), 50);
+      } else {
+        const email = document.getElementById('trol-lead-email').value.trim();
+        if (!email || !email.includes('@')) return;
+        submitLead(pendingLeadName, email);
+        form.remove();
+      }
+    };
+  }
+
+  function submitLead(name, email) {
+    leadCaptured = true;
+    banner.classList.add('visible');
+    addBotMsg(`Thanks ${name}! 🙌 We'll reach out to you at ${email}. In the meantime, feel free to keep asking me anything about Screentrol.`);
+    // Send lead to Worker
+    fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lead: { name, email, source: 'screentrol.app chatbot', timestamp: new Date().toISOString() } })
+    }).catch(() => {}); // silent — lead capture is best effort
+  }
+
+  // ── Send message ──
+  window.trolSend = function() {
+    const text = input.value.trim();
+    if (!text || isTyping) return;
+    input.value = '';
+    input.style.height = 'auto';
+    handleUserMsg(text);
+  };
+
+  function handleUserMsg(text) {
+    addUserMsg(text);
+    messages.push({ role: 'user', content: text });
+
+    // Check if asking for support / human
+    const lower = text.toLowerCase();
+    const wantsHuman = /human|person|talk to|speak to|contact|support|help me|not working|broken|issue|problem/i.test(lower);
+    const wantsLead  = /email|reach out|follow up|contact me|call me|get in touch/i.test(lower);
+
+    if ((wantsHuman || wantsLead) && !leadCaptured) {
+      setTimeout(() => startLeadCapture(), 600);
+      return;
+    }
+
+    sendToAPI(text);
+  }
+
+  // ── API call ──
+  async function sendToAPI(userText) {
+    isTyping = true;
+    sendBtn.disabled = true;
+    showTyping();
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemPrompt: SYSTEM_PROMPT,
+          messages: messages.slice(-12) // keep last 12 for context window efficiency
+        })
+      });
+
+      hideTyping();
+
+      if (!res.ok) throw new Error('API error');
+
+      const data = await res.json();
+      const reply = data.reply || "Hmm, I didn't get a response. Try again or email us at hello@screentrol.app!";
+
+      messages.push({ role: 'assistant', content: reply });
+      addBotMsg(reply);
+
+      // After 3 exchanges, offer lead capture if not done yet
+      if (!leadCaptured && messages.filter(m => m.role === 'user').length === 3) {
+        setTimeout(() => {
+          addBotMsg("By the way — if you ever want a follow-up from our team, I can take your details! Just say 'contact me' anytime.");
+        }, 800);
+      }
+
+    } catch (err) {
+      hideTyping();
+      addBotMsg("Sorry, I'm having a little trouble right now. For immediate help, email hello@screentrol.app — we respond fast! 🙂");
+    }
+
+    isTyping = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }
+
+})();
+</script>
+
+  
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
