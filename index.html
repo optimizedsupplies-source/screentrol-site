@@ -223,10 +223,10 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 </style>
 </head>
 <body>
-</script>
-  <!-- TROL — Screentrol.app Chat Widget v1 -->
+
+  <!-- TROL — Screentrol.app Chat Widget v2 -->
 <!-- Paste this snippet just before </body> on screentrol.app -->
-<!-- Replace WORKER_URL_PLACEHOLDER with your Cloudflare Worker URL after deployment -->
+<!-- Replace WORKER_URL_PLACEHOLDER with your Cloudflare Worker URL -->
 
 <style>
 /* ── Screentrol Chat Widget ── */
@@ -248,9 +248,9 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #1a1a2e;
-  border: 1.5px solid rgba(99,179,237,0.35);
-  box-shadow: 0 4px 24px rgba(99,179,237,0.18), 0 2px 8px rgba(0,0,0,0.4);
+  background: #0f140f;
+  border: 1.5px solid rgba(74,222,128,0.4);
+  box-shadow: 0 4px 24px rgba(74,222,128,0.2), 0 2px 8px rgba(0,0,0,0.4);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -264,11 +264,11 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, rgba(99,179,237,0.15), transparent 70%);
+  background: radial-gradient(circle at 35% 35%, rgba(74,222,128,0.15), transparent 70%);
 }
 #trol-bubble:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 32px rgba(99,179,237,0.28), 0 2px 8px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 32px rgba(74,222,128,0.3), 0 2px 8px rgba(0,0,0,0.5);
 }
 #trol-bubble svg { position: relative; z-index: 1; transition: opacity 0.2s, transform 0.2s; }
 #trol-bubble .trol-icon-chat { opacity: 1; transform: scale(1); }
@@ -280,8 +280,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 #trol-window {
   width: 360px;
   height: 520px;
-  background: #0f0f1a;
-  border: 1px solid rgba(99,179,237,0.2);
+  background: #0f140f;
+  border: 1px solid rgba(74,222,128,0.15);
   border-radius: 18px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
   display: flex;
@@ -301,8 +301,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 /* ── Header ── */
 #trol-header {
   padding: 14px 16px 13px;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  border-bottom: 1px solid rgba(99,179,237,0.12);
+  background: linear-gradient(135deg, #0f140f 0%, #151c15 100%);
+  border-bottom: 1px solid rgba(74,222,128,0.1);
   display: flex;
   align-items: center;
   gap: 11px;
@@ -312,8 +312,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #1e3a5f, #2d6a9f);
-  border: 1px solid rgba(99,179,237,0.3);
+  background: linear-gradient(135deg, #166534, #16a34a);
+  border: 1px solid rgba(74,222,128,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -323,12 +323,12 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 .trol-header-text h3 {
   font-size: 14px;
   font-weight: 600;
-  color: #e8f4fd;
+  color: #e8f0e8;
   letter-spacing: 0.01em;
 }
 .trol-header-text p {
   font-size: 11.5px;
-  color: rgba(148,204,240,0.65);
+  color: rgba(134,239,172,0.6);
   margin-top: 1px;
 }
 .trol-status {
@@ -336,20 +336,20 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   align-items: center;
   gap: 5px;
   font-size: 11px;
-  color: rgba(148,204,240,0.5);
+  color: rgba(134,239,172,0.45);
   margin-top: 2px;
 }
 .trol-status-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #48bb78;
-  box-shadow: 0 0 6px rgba(72,187,120,0.6);
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74,222,128,0.7);
   animation: trol-pulse 2.5s ease-in-out infinite;
 }
 @keyframes trol-pulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  50% { opacity: 0.4; }
 }
 
 /* ── Messages ── */
@@ -364,7 +364,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 }
 #trol-messages::-webkit-scrollbar { width: 4px; }
 #trol-messages::-webkit-scrollbar-track { background: transparent; }
-#trol-messages::-webkit-scrollbar-thumb { background: rgba(99,179,237,0.2); border-radius: 2px; }
+#trol-messages::-webkit-scrollbar-thumb { background: rgba(74,222,128,0.15); border-radius: 2px; }
 
 .trol-msg {
   display: flex;
@@ -386,14 +386,14 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   line-height: 1.55;
 }
 .trol-msg.bot .trol-bubble-text {
-  background: #1a1a2e;
-  border: 1px solid rgba(99,179,237,0.15);
-  color: #cce7f8;
+  background: #151c15;
+  border: 1px solid rgba(74,222,128,0.12);
+  color: #e8f0e8;
   border-bottom-left-radius: 4px;
 }
 .trol-msg.user .trol-bubble-text {
-  background: linear-gradient(135deg, #1e3a5f, #2563a8);
-  color: #e8f4fd;
+  background: linear-gradient(135deg, #166534, #16a34a);
+  color: #f0fdf4;
   border-bottom-right-radius: 4px;
 }
 
@@ -403,8 +403,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   align-items: center;
   gap: 4px;
   padding: 10px 13px;
-  background: #1a1a2e;
-  border: 1px solid rgba(99,179,237,0.15);
+  background: #151c15;
+  border: 1px solid rgba(74,222,128,0.12);
   border-radius: 14px;
   border-bottom-left-radius: 4px;
   width: fit-content;
@@ -412,7 +412,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 .trol-typing span {
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: rgba(99,179,237,0.5);
+  background: rgba(74,222,128,0.5);
   animation: trol-bounce 1.2s ease-in-out infinite;
 }
 .trol-typing span:nth-child(2) { animation-delay: 0.2s; }
@@ -427,11 +427,11 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   display: none;
   margin: 0 14px 10px;
   padding: 9px 13px;
-  background: rgba(72,187,120,0.1);
-  border: 1px solid rgba(72,187,120,0.25);
+  background: rgba(74,222,128,0.08);
+  border: 1px solid rgba(74,222,128,0.2);
   border-radius: 10px;
   font-size: 12.5px;
-  color: #9ae6b4;
+  color: #86efac;
   text-align: center;
   flex-shrink: 0;
 }
@@ -439,8 +439,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 
 /* ── Lead form (inline in chat) ── */
 .trol-lead-form {
-  background: #1a1a2e;
-  border: 1px solid rgba(99,179,237,0.2);
+  background: #151c15;
+  border: 1px solid rgba(74,222,128,0.15);
   border-radius: 14px;
   padding: 13px;
   display: flex;
@@ -452,28 +452,28 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 }
 .trol-lead-form p {
   font-size: 13px;
-  color: rgba(148,204,240,0.8);
+  color: rgba(134,239,172,0.8);
   line-height: 1.4;
 }
 .trol-lead-form input {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(99,179,237,0.2);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(74,222,128,0.18);
   border-radius: 8px;
   padding: 8px 11px;
   font-size: 13px;
-  color: #e8f4fd;
+  color: #e8f0e8;
   outline: none;
   transition: border-color 0.15s;
   width: 100%;
 }
-.trol-lead-form input::placeholder { color: rgba(148,204,240,0.35); }
-.trol-lead-form input:focus { border-color: rgba(99,179,237,0.5); }
+.trol-lead-form input::placeholder { color: rgba(134,239,172,0.3); }
+.trol-lead-form input:focus { border-color: rgba(74,222,128,0.45); }
 .trol-lead-submit {
-  background: linear-gradient(135deg, #1e3a5f, #2563a8);
+  background: linear-gradient(135deg, #166534, #16a34a);
   border: none;
   border-radius: 8px;
   padding: 8px;
-  color: #e8f4fd;
+  color: #f0fdf4;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -484,21 +484,21 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 /* ── Input area ── */
 #trol-input-area {
   padding: 10px 12px 12px;
-  border-top: 1px solid rgba(99,179,237,0.1);
+  border-top: 1px solid rgba(74,222,128,0.08);
   display: flex;
   align-items: flex-end;
   gap: 8px;
   flex-shrink: 0;
-  background: #0f0f1a;
+  background: #0f140f;
 }
 #trol-input {
   flex: 1;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(99,179,237,0.18);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(74,222,128,0.15);
   border-radius: 12px;
   padding: 9px 13px;
   font-size: 13.5px;
-  color: #e8f4fd;
+  color: #e8f0e8;
   resize: none;
   outline: none;
   line-height: 1.5;
@@ -506,14 +506,14 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   overflow-y: auto;
   transition: border-color 0.15s;
 }
-#trol-input::placeholder { color: rgba(148,204,240,0.3); }
-#trol-input:focus { border-color: rgba(99,179,237,0.4); }
+#trol-input::placeholder { color: rgba(107,125,107,0.7); }
+#trol-input:focus { border-color: rgba(74,222,128,0.35); }
 
 #trol-send {
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #1e3a5f, #2563a8);
+  background: linear-gradient(135deg, #166534, #16a34a);
   border: none;
   cursor: pointer;
   display: flex;
@@ -529,10 +529,10 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 #trol-footer {
   text-align: center;
   font-size: 10.5px;
-  color: rgba(99,179,237,0.25);
+  color: rgba(74,222,128,0.2);
   padding: 0 12px 9px;
   flex-shrink: 0;
-  background: #0f0f1a;
+  background: #0f140f;
 }
 
 /* ── Suggested questions ── */
@@ -545,19 +545,19 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   align-self: flex-start;
 }
 .trol-suggestion-btn {
-  background: rgba(99,179,237,0.08);
-  border: 1px solid rgba(99,179,237,0.2);
+  background: rgba(74,222,128,0.06);
+  border: 1px solid rgba(74,222,128,0.18);
   border-radius: 20px;
   padding: 5px 11px;
   font-size: 12px;
-  color: rgba(148,204,240,0.8);
+  color: rgba(134,239,172,0.8);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
   white-space: nowrap;
 }
 .trol-suggestion-btn:hover {
-  background: rgba(99,179,237,0.15);
-  border-color: rgba(99,179,237,0.4);
+  background: rgba(74,222,128,0.12);
+  border-color: rgba(74,222,128,0.35);
 }
 
 /* ── Mobile ── */
@@ -570,10 +570,10 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 <div id="trol-wrapper">
   <!-- Bubble -->
   <button id="trol-bubble" aria-label="Chat with Trol" onclick="trolToggle()">
-    <svg class="trol-icon-chat" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(99,179,237,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="trol-icon-chat" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(74,222,128,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
     </svg>
-    <svg class="trol-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(99,179,237,0.9)" stroke-width="2.5" stroke-linecap="round">
+    <svg class="trol-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(74,222,128,0.9)" stroke-width="2.5" stroke-linecap="round">
       <line x1="18" y1="6" x2="6" y2="18"/>
       <line x1="6" y1="6" x2="18" y2="18"/>
     </svg>
@@ -622,9 +622,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 <script>
 (function() {
   // ── Config ──
-  const WORKER_URL = 'https://screentrol-chat.optimizedsupplies.workers.dev'; // Replace after Cloudflare Worker deploy
-  const BOT_NAME   = 'Trol';
-  const SITE_NAME  = 'Screentrol';
+  const WORKER_URL = 'WORKER_URL_PLACEHOLDER'; // Replace with your Cloudflare Worker URL
 
   // ── System prompt ──
   const SYSTEM_PROMPT = `You are Trol, a friendly and helpful AI assistant for Screentrol (screentrol.app).
@@ -695,7 +693,7 @@ WHAT NOT TO DISCUSS:
   // ── State ──
   let messages        = [];
   let leadCaptured    = false;
-  let leadStep        = null; // null | 'name' | 'email'
+  let leadStep        = null;
   let pendingLeadName = '';
   let isOpen          = false;
   let isTyping        = false;
@@ -827,12 +825,11 @@ WHAT NOT TO DISCUSS:
     leadCaptured = true;
     banner.classList.add('visible');
     addBotMsg(`Thanks ${name}! 🙌 We'll reach out to you at ${email}. In the meantime, feel free to keep asking me anything about Screentrol.`);
-    // Send lead to Worker
     fetch(WORKER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ lead: { name, email, source: 'screentrol.app chatbot', timestamp: new Date().toISOString() } })
-    }).catch(() => {}); // silent — lead capture is best effort
+    }).catch(() => {});
   }
 
   // ── Send message ──
@@ -848,10 +845,8 @@ WHAT NOT TO DISCUSS:
     addUserMsg(text);
     messages.push({ role: 'user', content: text });
 
-    // Check if asking for support / human
-    const lower = text.toLowerCase();
-    const wantsHuman = /human|person|talk to|speak to|contact|support|help me|not working|broken|issue|problem/i.test(lower);
-    const wantsLead  = /email|reach out|follow up|contact me|call me|get in touch/i.test(lower);
+    const wantsHuman = /human|person|talk to|speak to|contact|support|help me|not working|broken|issue|problem/i.test(text);
+    const wantsLead  = /email|reach out|follow up|contact me|call me|get in touch/i.test(text);
 
     if ((wantsHuman || wantsLead) && !leadCaptured) {
       setTimeout(() => startLeadCapture(), 600);
@@ -873,21 +868,19 @@ WHAT NOT TO DISCUSS:
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           systemPrompt: SYSTEM_PROMPT,
-          messages: messages.slice(-12) // keep last 12 for context window efficiency
+          messages: messages.slice(-12)
         })
       });
 
       hideTyping();
-
       if (!res.ok) throw new Error('API error');
 
       const data = await res.json();
       const reply = data.reply || "Hmm, I didn't get a response. Try again or email us at hello@screentrol.app!";
-
       messages.push({ role: 'assistant', content: reply });
       addBotMsg(reply);
 
-      // After 3 exchanges, offer lead capture if not done yet
+      // After 3 exchanges offer lead capture
       if (!leadCaptured && messages.filter(m => m.role === 'user').length === 3) {
         setTimeout(() => {
           addBotMsg("By the way — if you ever want a follow-up from our team, I can take your details! Just say 'contact me' anytime.");
@@ -906,6 +899,8 @@ WHAT NOT TO DISCUSS:
 
 })();
 </script>
+
+  
 <nav>
   <div class="nav-logo">Screentrol</div>
   <ul class="nav-links">
