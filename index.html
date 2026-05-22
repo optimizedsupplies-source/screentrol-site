@@ -309,16 +309,18 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   flex-shrink: 0;
 }
 .trol-avatar {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
   border-radius: 10px;
   background: linear-gradient(135deg, #166534, #16a34a);
   border: 1px solid rgba(74,222,128,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 20px;
   flex-shrink: 0;
+  line-height: 1;
 }
 .trol-header-text h3 {
   font-size: 14px;
@@ -386,14 +388,14 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   line-height: 1.55;
 }
 .trol-msg.bot .trol-bubble-text {
-  background: #151c15;
-  border: 1px solid rgba(74,222,128,0.12);
-  color: #e8f0e8;
+  background: #0f2d1a;
+  border: 1px solid rgba(74,222,128,0.25);
+  color: #86efac;
   border-bottom-left-radius: 4px;
 }
 .trol-msg.user .trol-bubble-text {
-  background: linear-gradient(135deg, #166534, #16a34a);
-  color: #f0fdf4;
+  background: linear-gradient(135deg, #1e3a5f, #2563a8);
+  color: #e8f4fd;
   border-bottom-right-radius: 4px;
 }
 
@@ -403,8 +405,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   align-items: center;
   gap: 4px;
   padding: 10px 13px;
-  background: #151c15;
-  border: 1px solid rgba(74,222,128,0.12);
+  background: #0f2d1a;
+  border: 1px solid rgba(74,222,128,0.25);
   border-radius: 14px;
   border-bottom-left-radius: 4px;
   width: fit-content;
@@ -748,7 +750,8 @@ WHAT NOT TO DISCUSS:
     div.className = 'trol-msg bot';
     const bubble = document.createElement('div');
     bubble.className = 'trol-bubble-text';
-    bubble.textContent = text;
+    // Render **bold** markdown
+    bubble.innerHTML = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     div.appendChild(bubble);
     msgArea.appendChild(div);
     scrollBottom();
@@ -897,8 +900,12 @@ WHAT NOT TO DISCUSS:
     input.focus();
   }
 
+// Move wrapper to document.body to escape any overflow:hidden containers
+  document.body.appendChild(wrapper);
+
 })();
 </script>
+
 
 
   
