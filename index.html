@@ -26,8 +26,8 @@
   --font-mono: 'DM Mono', monospace;
   --font-body: 'DM Sans', sans-serif;
 }
- 
-html { scroll-behavior: smooth; }  
+
+html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
 body::before {
@@ -224,13 +224,179 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 </head>
 <body>
 
+<nav>
+  <div class="nav-logo">Screentrol</div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#pricing" class="nav-cta">Get it — $4.99</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge"><div class="badge-dot"></div>v1.0.0 — Windows · Wireless &amp; USB</div>
+  <h1>
+    <span class="line-dim">Your Android,</span>
+    <span class="line-accent">on your PC.</span>
+  </h1>
+  <p class="hero-sub">Mirror, control, and stream audio from your Android phone — no lag, no subscriptions, no nonsense.</p>
+  <div class="hero-actions">
+    <a href="#pricing" class="btn-primary"><span>Get Screentrol</span><span style="opacity:0.7;font-size:14px;">→</span></a>
+    <a href="#how" class="btn-secondary">See how it works</a>
+  </div>
+  <p class="hero-price-note"><strong>$4.99</strong> · one-time purchase · no subscription ever</p>
+
+  <div class="hero-visual">
+    <div class="mock-window">
+      <div class="mock-titlebar">
+        <div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div>
+        <div class="mock-title">Screentrol v1.0.0 — Your Android on your PC</div>
+      </div>
+      <div class="mock-body">
+        <div class="mock-card">
+          <div class="mock-label">Connection</div>
+          <div class="mock-device">
+            <div class="mock-device-icon">📱</div>
+            <div><div class="mock-device-name">Pixel 8 Pro</div><div class="mock-device-sub">USB · adb ready</div></div>
+            <div class="mock-check">✓</div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:8px;font-family:var(--font-mono);">1 device found</div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-label">Options</div>
+          <div class="mock-opt"><div><div style="font-size:12px;">Forward audio</div><div class="mock-opt-sub">Android 11+</div></div><div class="mock-toggle"></div></div>
+          <div class="mock-opt"><div><div style="font-size:12px;">Always on top</div><div class="mock-opt-sub">Float above windows</div></div><div class="mock-toggle off"></div></div>
+          <div class="mock-opt"><div><div style="font-size:12px;">Screen off</div><div class="mock-opt-sub">Save battery</div></div><div class="mock-toggle"></div></div>
+        </div>
+        <div class="mock-status">✓ Connected · Ready to launch Screentrol</div>
+        <div class="mock-launch">Launch Screentrol</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section id="features">
+  <div class="section-label">Features</div>
+  <h2 class="section-title">Everything you need.<br>Nothing you don't.</h2>
+  <p class="section-sub">Built on scrcpy — the fastest open source Android mirror engine — with a clean setup wizard on top.</p>
+  <div class="features-grid">
+    <div class="feature-card"><span class="feature-icon">🔌</span><div class="feature-title">USB &amp; Wireless</div><p class="feature-desc">Plug in via cable or go fully wireless over your local network. One-time pairing setup, reconnects automatically.</p></div>
+    <div class="feature-card"><span class="feature-icon">🎵</span><div class="feature-title">Audio Forwarding</div><p class="feature-desc">Stream your phone's audio directly to your PC speakers. Requires Android 11 or later.</p></div>
+    <div class="feature-card"><span class="feature-icon">⚡</span><div class="feature-title">Ultra-low latency</div><p class="feature-desc">scrcpy's engine runs at native speed. No cloud, no middleman. Your phone talks directly to your PC.</p></div>
+    <div class="feature-card"><span class="feature-icon">🪄</span><div class="feature-title">Setup wizard</div><p class="feature-desc">Brand-specific step-by-step guide for Samsung, Pixel, OnePlus, Xiaomi, Motorola, and more.</p></div>
+    <div class="feature-card"><span class="feature-icon">🔋</span><div class="feature-title">Battery saver</div><p class="feature-desc">Automatically turn off your phone screen while mirroring. Keeps you in control without draining battery.</p></div>
+    <div class="feature-card"><span class="feature-icon">📌</span><div class="feature-title">System tray</div><p class="feature-desc">Runs quietly in the background. Always one click away, without cluttering your taskbar.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="how">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">Up and running<br>in three steps.</h2>
+  <p class="section-sub">Screentrol's setup wizard walks you through everything — no terminal, no drivers, no guesswork.</p>
+  <div class="steps-wrap">
+    <div class="step"><div class="step-num">1</div><div class="step-title">Download &amp; Launch</div><p class="step-desc">Download the Screentrol installer. Everything is bundled in — no extra dependencies to manage.</p></div>
+    <div class="step"><div class="step-num">2</div><div class="step-title">Enable USB Debugging</div><p class="step-desc">The wizard gives you exact steps for your phone brand. Takes about 60 seconds, one time only.</p></div>
+    <div class="step"><div class="step-num">3</div><div class="step-title">Launch &amp; Mirror</div><p class="step-desc">Plug in or connect over WiFi. Hit Launch — your phone screen appears on your PC instantly.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="section-label">Requirements</div>
+  <h2 class="section-title">What you need.</h2>
+  <div class="specs-grid">
+    <div class="spec-row"><span class="spec-key">Operating System</span><span class="spec-val">Windows 10 / 11 (64-bit)</span></div>
+    <div class="spec-row"><span class="spec-key">Android Version</span><span class="spec-val">Android 8.0+</span></div>
+    <div class="spec-row"><span class="spec-key">Audio Forwarding</span><span class="spec-val">Android 11+</span></div>
+    <div class="spec-row"><span class="spec-key">USB Connection</span><span class="spec-val">Any USB-A or USB-C cable</span></div>
+    <div class="spec-row"><span class="spec-key">WiFi Connection</span><span class="spec-val">Same local network</span></div>
+    <div class="spec-row"><span class="spec-key">Root required?</span><span class="spec-val green">No — zero root needed</span></div>
+    <div class="spec-row"><span class="spec-key">Powered by</span><span class="spec-val">scrcpy (Apache 2.0)</span></div>
+    <div class="spec-row"><span class="spec-key">Installation size</span><span class="spec-val">~20 MB</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="faq">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Questions.</h2>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is Screentrol safe? What does it actually do?<span class="faq-chevron">+</span></button><div class="faq-a">Screentrol uses Android's official ADB (Android Debug Bridge) — the same tool Android Studio uses. It does not modify your phone, collect any data, or require root access. The mirroring engine is scrcpy, a fully open source project by Genymobile with millions of users.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Why does scrcpy need a paid wrapper?<span class="faq-chevron">+</span></button><div class="faq-a">scrcpy is a command-line tool — powerful, but requires terminal knowledge to set up. Screentrol handles everything: bundling scrcpy, guiding you through developer options for your specific phone brand, managing connections, and providing a clean UI. You pay for the setup experience and wizard, not the underlying engine.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does it work on Mac or Linux?<span class="faq-chevron">+</span></button><div class="faq-a">Screentrol v1.0.0 is Windows-only. Mac and Linux support are on the roadmap. In the meantime, scrcpy runs natively on those platforms if you're comfortable with the terminal.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Will it work with my Samsung / Pixel / Xiaomi?<span class="faq-chevron">+</span></button><div class="faq-a">Yes. The setup wizard has brand-specific instructions for Samsung, Pixel, OnePlus, Xiaomi, Motorola, and a generic guide for everything else. Samsung users also get a reminder to disable Auto Blocker, which is a common stumbling block.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this a subscription?<span class="faq-chevron">+</span></button><div class="faq-a">No. $4.99 once, yours forever. No recurring charges, no "pro" tier, no account required to use the app after activation.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if it doesn't work for me?<span class="faq-chevron">+</span></button><div class="faq-a">Reach out via Gumroad and we'll help you troubleshoot. If we genuinely can't get it working on your setup, you'll get a full refund — no questions asked.</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title" style="text-align:center;">One price.<br>No tricks.</h2>
+  <div class="pricing-wrap">
+    <div class="price-card">
+      <div class="price-tag-label">Screentrol — Lifetime License</div>
+      <div class="price-amount"><sup>$</sup>4.99</div>
+      <div class="price-type">one-time · no subscription</div>
+      <ul class="price-features">
+        <li>USB &amp; wireless mirroring</li>
+        <li>Audio forwarding (Android 11+)</li>
+        <li>Step-by-step setup wizard</li>
+        <li>System tray &amp; auto-reconnect</li>
+        <li>All future v1.x updates</li>
+        <li>Lifetime license key</li>
+      </ul>
+      <a href="https://optisupply.gumroad.com/l/screentrol" class="price-btn">Buy Screentrol — $4.99</a>
+      <div class="price-note">Secure checkout via Gumroad · Instant delivery</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Screentrol</div>
+  <div class="footer-links">
+    <a href="https://github.com/Genymobile/scrcpy">Powered by scrcpy</a>
+    <a href="mailto:hello@screentrol.app">Support</a>
+  </div>
+  <div class="footer-copy">© 2026 Screentrol · Apache 2.0 for scrcpy</div>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.feature-card, .step').forEach(el => observer.observe(el));
+</script>
+
 <!-- TROL — Screentrol.app Chat Widget v2 -->
 <!-- Paste this snippet just before </body> on screentrol.app -->
 <!-- Replace WORKER_URL_PLACEHOLDER with your Cloudflare Worker URL -->
 
 <style>
 /* ── Screentrol Chat Widget ── */
-#trol-wrapper * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; }
+#trol-wrapper * { box-sizing: border-box; font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; }
+#trol-wrapper *:not(.trol-bubble-text):not(.trol-suggestion-btn):not(.trol-lead-form):not(#trol-header):not(#trol-input-area):not(#trol-footer):not(#trol-input):not(.trol-lead-submit):not(#trol-lead-banner) { margin: 0; padding: 0; }
 
 #trol-wrapper {
   position: fixed !important;
@@ -281,7 +447,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 
 /* ── Chat window ── */
 #trol-window {
-  width: 420px;
+  width: 440px;
   height: 560px;
   max-height: calc(100vh - 100px);
   background: #0f140f;
@@ -363,7 +529,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 #trol-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 16px 14px;
+  padding: 18px 16px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -376,7 +542,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 .trol-msg {
   display: flex;
   flex-direction: column;
-  max-width: 82%;
+  max-width: 78%;
   animation: trol-fadeup 0.2s ease;
 }
 @keyframes trol-fadeup {
@@ -387,10 +553,10 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 .trol-msg.user { align-self: flex-end; }
 
 .trol-bubble-text {
-  padding: 12px 16px;
+  padding: 14px 18px;
   border-radius: 16px;
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 .trol-msg.bot .trol-bubble-text {
   background: #0f2d1a;
@@ -546,8 +712,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 .trol-suggestions {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 4px;
+  gap: 8px;
+  margin-top: 6px;
   max-width: 95%;
   align-self: flex-start;
 }
@@ -555,8 +721,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   background: rgba(74,222,128,0.06);
   border: 1px solid rgba(74,222,128,0.18);
   border-radius: 20px;
-  padding: 5px 11px;
-  font-size: 12px;
+  padding: 8px 14px;
+  font-size: 12.5px;
   color: rgba(134,239,172,0.8);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
@@ -910,173 +1076,5 @@ WHAT NOT TO DISCUSS:
 </script>
 
 
-
-
-  
-<nav>
-  <div class="nav-logo">Screentrol</div>
-  <ul class="nav-links">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#how">How it works</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#pricing" class="nav-cta">Get it — $4.99</a></li>
-  </ul>
-</nav>
-
-<div class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-badge"><div class="badge-dot"></div>v1.0.0 — Windows · Wireless &amp; USB</div>
-  <h1>
-    <span class="line-dim">Your Android,</span>
-    <span class="line-accent">on your PC.</span>
-  </h1>
-  <p class="hero-sub">Mirror, control, and stream audio from your Android phone — no lag, no subscriptions, no nonsense.</p>
-  <div class="hero-actions">
-    <a href="#pricing" class="btn-primary"><span>Get Screentrol</span><span style="opacity:0.7;font-size:14px;">→</span></a>
-    <a href="#how" class="btn-secondary">See how it works</a>
-  </div>
-  <p class="hero-price-note"><strong>$4.99</strong> · one-time purchase · no subscription ever</p>
-
-  <div class="hero-visual">
-    <div class="mock-window">
-      <div class="mock-titlebar">
-        <div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div>
-        <div class="mock-title">Screentrol v1.0.0 — Your Android on your PC</div>
-      </div>
-      <div class="mock-body">
-        <div class="mock-card">
-          <div class="mock-label">Connection</div>
-          <div class="mock-device">
-            <div class="mock-device-icon">📱</div>
-            <div><div class="mock-device-name">Pixel 8 Pro</div><div class="mock-device-sub">USB · adb ready</div></div>
-            <div class="mock-check">✓</div>
-          </div>
-          <div style="font-size:11px;color:var(--muted);margin-top:8px;font-family:var(--font-mono);">1 device found</div>
-        </div>
-        <div class="mock-card">
-          <div class="mock-label">Options</div>
-          <div class="mock-opt"><div><div style="font-size:12px;">Forward audio</div><div class="mock-opt-sub">Android 11+</div></div><div class="mock-toggle"></div></div>
-          <div class="mock-opt"><div><div style="font-size:12px;">Always on top</div><div class="mock-opt-sub">Float above windows</div></div><div class="mock-toggle off"></div></div>
-          <div class="mock-opt"><div><div style="font-size:12px;">Screen off</div><div class="mock-opt-sub">Save battery</div></div><div class="mock-toggle"></div></div>
-        </div>
-        <div class="mock-status">✓ Connected · Ready to launch Screentrol</div>
-        <div class="mock-launch">Launch Screentrol</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<section id="features">
-  <div class="section-label">Features</div>
-  <h2 class="section-title">Everything you need.<br>Nothing you don't.</h2>
-  <p class="section-sub">Built on scrcpy — the fastest open source Android mirror engine — with a clean setup wizard on top.</p>
-  <div class="features-grid">
-    <div class="feature-card"><span class="feature-icon">🔌</span><div class="feature-title">USB &amp; Wireless</div><p class="feature-desc">Plug in via cable or go fully wireless over your local network. One-time pairing setup, reconnects automatically.</p></div>
-    <div class="feature-card"><span class="feature-icon">🎵</span><div class="feature-title">Audio Forwarding</div><p class="feature-desc">Stream your phone's audio directly to your PC speakers. Requires Android 11 or later.</p></div>
-    <div class="feature-card"><span class="feature-icon">⚡</span><div class="feature-title">Ultra-low latency</div><p class="feature-desc">scrcpy's engine runs at native speed. No cloud, no middleman. Your phone talks directly to your PC.</p></div>
-    <div class="feature-card"><span class="feature-icon">🪄</span><div class="feature-title">Setup wizard</div><p class="feature-desc">Brand-specific step-by-step guide for Samsung, Pixel, OnePlus, Xiaomi, Motorola, and more.</p></div>
-    <div class="feature-card"><span class="feature-icon">🔋</span><div class="feature-title">Battery saver</div><p class="feature-desc">Automatically turn off your phone screen while mirroring. Keeps you in control without draining battery.</p></div>
-    <div class="feature-card"><span class="feature-icon">📌</span><div class="feature-title">System tray</div><p class="feature-desc">Runs quietly in the background. Always one click away, without cluttering your taskbar.</p></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="how">
-  <div class="section-label">How it works</div>
-  <h2 class="section-title">Up and running<br>in three steps.</h2>
-  <p class="section-sub">Screentrol's setup wizard walks you through everything — no terminal, no drivers, no guesswork.</p>
-  <div class="steps-wrap">
-    <div class="step"><div class="step-num">1</div><div class="step-title">Download &amp; Launch</div><p class="step-desc">Download the Screentrol installer. Everything is bundled in — no extra dependencies to manage.</p></div>
-    <div class="step"><div class="step-num">2</div><div class="step-title">Enable USB Debugging</div><p class="step-desc">The wizard gives you exact steps for your phone brand. Takes about 60 seconds, one time only.</p></div>
-    <div class="step"><div class="step-num">3</div><div class="step-title">Launch &amp; Mirror</div><p class="step-desc">Plug in or connect over WiFi. Hit Launch — your phone screen appears on your PC instantly.</p></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section>
-  <div class="section-label">Requirements</div>
-  <h2 class="section-title">What you need.</h2>
-  <div class="specs-grid">
-    <div class="spec-row"><span class="spec-key">Operating System</span><span class="spec-val">Windows 10 / 11 (64-bit)</span></div>
-    <div class="spec-row"><span class="spec-key">Android Version</span><span class="spec-val">Android 8.0+</span></div>
-    <div class="spec-row"><span class="spec-key">Audio Forwarding</span><span class="spec-val">Android 11+</span></div>
-    <div class="spec-row"><span class="spec-key">USB Connection</span><span class="spec-val">Any USB-A or USB-C cable</span></div>
-    <div class="spec-row"><span class="spec-key">WiFi Connection</span><span class="spec-val">Same local network</span></div>
-    <div class="spec-row"><span class="spec-key">Root required?</span><span class="spec-val green">No — zero root needed</span></div>
-    <div class="spec-row"><span class="spec-key">Powered by</span><span class="spec-val">scrcpy (Apache 2.0)</span></div>
-    <div class="spec-row"><span class="spec-key">Installation size</span><span class="spec-val">~20 MB</span></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="faq">
-  <div class="section-label">FAQ</div>
-  <h2 class="section-title">Questions.</h2>
-  <div class="faq-list">
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is Screentrol safe? What does it actually do?<span class="faq-chevron">+</span></button><div class="faq-a">Screentrol uses Android's official ADB (Android Debug Bridge) — the same tool Android Studio uses. It does not modify your phone, collect any data, or require root access. The mirroring engine is scrcpy, a fully open source project by Genymobile with millions of users.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Why does scrcpy need a paid wrapper?<span class="faq-chevron">+</span></button><div class="faq-a">scrcpy is a command-line tool — powerful, but requires terminal knowledge to set up. Screentrol handles everything: bundling scrcpy, guiding you through developer options for your specific phone brand, managing connections, and providing a clean UI. You pay for the setup experience and wizard, not the underlying engine.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does it work on Mac or Linux?<span class="faq-chevron">+</span></button><div class="faq-a">Screentrol v1.0.0 is Windows-only. Mac and Linux support are on the roadmap. In the meantime, scrcpy runs natively on those platforms if you're comfortable with the terminal.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Will it work with my Samsung / Pixel / Xiaomi?<span class="faq-chevron">+</span></button><div class="faq-a">Yes. The setup wizard has brand-specific instructions for Samsung, Pixel, OnePlus, Xiaomi, Motorola, and a generic guide for everything else. Samsung users also get a reminder to disable Auto Blocker, which is a common stumbling block.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this a subscription?<span class="faq-chevron">+</span></button><div class="faq-a">No. $4.99 once, yours forever. No recurring charges, no "pro" tier, no account required to use the app after activation.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if it doesn't work for me?<span class="faq-chevron">+</span></button><div class="faq-a">Reach out via Gumroad and we'll help you troubleshoot. If we genuinely can't get it working on your setup, you'll get a full refund — no questions asked.</div></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="pricing">
-  <div class="section-label">Pricing</div>
-  <h2 class="section-title" style="text-align:center;">One price.<br>No tricks.</h2>
-  <div class="pricing-wrap">
-    <div class="price-card">
-      <div class="price-tag-label">Screentrol — Lifetime License</div>
-      <div class="price-amount"><sup>$</sup>4.99</div>
-      <div class="price-type">one-time · no subscription</div>
-      <ul class="price-features">
-        <li>USB &amp; wireless mirroring</li>
-        <li>Audio forwarding (Android 11+)</li>
-        <li>Step-by-step setup wizard</li>
-        <li>System tray &amp; auto-reconnect</li>
-        <li>All future v1.x updates</li>
-        <li>Lifetime license key</li>
-      </ul>
-      <a href="https://optisupply.gumroad.com/l/screentrol" class="price-btn">Buy Screentrol — $4.99</a>
-      <div class="price-note">Secure checkout via Gumroad · Instant delivery</div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-brand">Screentrol</div>
-  <div class="footer-links">
-    <a href="https://github.com/Genymobile/scrcpy">Powered by scrcpy</a>
-    <a href="mailto:hello@screentrol.app">Support</a>
-  </div>
-  <div class="footer-copy">© 2026 Screentrol · Apache 2.0 for scrcpy</div>
-</footer>
-
-<script>
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if (!wasOpen) item.classList.add('open');
-}
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.feature-card, .step').forEach(el => observer.observe(el));
-
-  
 </body>
 </html>
