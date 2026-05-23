@@ -233,14 +233,17 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 #trol-wrapper * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; }
 
 #trol-wrapper {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 99999;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 2147483647 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 12px !important;
+  transform: none !important;
 }
 
 /* ── Bubble button ── */
@@ -278,8 +281,9 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 
 /* ── Chat window ── */
 #trol-window {
-  width: 360px;
-  height: 520px;
+  width: 420px;
+  height: 560px;
+  max-height: calc(100vh - 100px);
   background: #0f140f;
   border: 1px solid rgba(74,222,128,0.15);
   border-radius: 18px;
@@ -291,6 +295,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   transform: translateY(16px) scale(0.97);
   pointer-events: none;
   transition: opacity 0.22s ease, transform 0.22s ease;
+  order: -1;
 }
 #trol-wrapper.open #trol-window {
   opacity: 1;
@@ -361,7 +366,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
   padding: 16px 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
   scroll-behavior: smooth;
 }
 #trol-messages::-webkit-scrollbar { width: 4px; }
@@ -371,7 +376,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 .trol-msg {
   display: flex;
   flex-direction: column;
-  max-width: 88%;
+  max-width: 82%;
   animation: trol-fadeup 0.2s ease;
 }
 @keyframes trol-fadeup {
@@ -382,10 +387,10 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 .trol-msg.user { align-self: flex-end; }
 
 .trol-bubble-text {
-  padding: 9px 13px;
-  border-radius: 14px;
-  font-size: 13.5px;
-  line-height: 1.55;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.65;
 }
 .trol-msg.bot .trol-bubble-text {
   background: #0f2d1a;
@@ -564,8 +569,8 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 
 /* ── Mobile ── */
 @media (max-width: 420px) {
-  #trol-window { width: calc(100vw - 24px); height: 480px; }
-  #trol-wrapper { bottom: 16px; right: 12px; }
+  #trol-window { width: calc(100vw - 24px); height: 480px; max-height: calc(100vh - 90px); }
+  #trol-wrapper { bottom: 16px !important; right: 12px !important; }
 }
 </style>
 
@@ -586,7 +591,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--border); pa
 
     <!-- Header -->
     <div id="trol-header">
-      <div class="trol-avatar">📱</div>
+      <div class="trol-avatar" style="font-style:normal;font-variant:normal;text-rendering:auto;-webkit-font-smoothing:antialiased;">📱</div>
       <div class="trol-header-text">
         <h3>Trol</h3>
         <p>Screentrol Assistant</p>
@@ -710,6 +715,7 @@ WHAT NOT TO DISCUSS:
 
   // ── DOM refs ──
   const wrapper  = document.getElementById('trol-wrapper');
+  document.body.appendChild(wrapper); // Escape any overflow:hidden containers
   const msgArea  = document.getElementById('trol-messages');
   const input    = document.getElementById('trol-input');
   const sendBtn  = document.getElementById('trol-send');
@@ -900,11 +906,9 @@ WHAT NOT TO DISCUSS:
     input.focus();
   }
 
-// Move wrapper to document.body to escape any overflow:hidden containers
-  document.body.appendChild(wrapper);
-
 })();
 </script>
+
 
 
 
