@@ -410,10 +410,12 @@ document.querySelectorAll('.feature-card, .step').forEach(el => observer.observe
   align-items: flex-end !important;
   gap: 12px !important;
   transform: none !important;
+  pointer-events: none !important;
 }
 
 /* ── Bubble button ── */
 #trol-bubble {
+  pointer-events: auto;
   width: 56px;
   height: 56px;
   border-radius: 50%;
